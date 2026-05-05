@@ -33,17 +33,39 @@ export type Logger = {
   ) => Promise<void>;
 };
 
+const log = (
+  level: string,
+  module: string,
+  layer: string,
+  message: string,
+  meta?: LogMeta,
+) => {
+  console.log(
+    JSON.stringify({
+      timestamp: new Date().toISOString(),
+      level,
+      module,
+      layer,
+      message,
+      meta,
+    }),
+  );
+};
+
 export const getLogger = (): Logger => {
   return {
-    info: async (module, layer, message, meta) => {},
-    error: async (module, layer, message, meta) => {},
-    warn: async (module, layer, message, meta) => {},
-    debug: async (module, layer, message, meta) => {},
-    fatal: async (module, layer, message, meta) => {},
+    info: async (m, l, msg, meta) => log("info", m, l, msg, meta),
+    error: async (m, l, msg, meta) => log("error", m, l, msg, meta),
+    warn: async (m, l, msg, meta) => log("warn", m, l, msg, meta),
+    debug: async (m, l, msg, meta) => log("debug", m, l, msg, meta),
+    fatal: async (m, l, msg, meta) => log("fatal", m, l, msg, meta),
   };
 };
 
-export const initializeLogger = () => {};
+export const initializeLogger = () => {
+  const config = getConfig();
+  console.log("Logger initialized:", config);
+};
 
 export const getConfig = () => ({
   clientID: "ce95a206-3bb3-4260-a058-7b90197810c1",
