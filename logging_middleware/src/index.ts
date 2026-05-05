@@ -62,9 +62,10 @@ export const getLogger = (): Logger => {
   };
 };
 
-export const initializeLogger = () => {
-  const config = getConfig();
-  console.log("Logger initialized:", config);
+export const initializeLogger = (config?: any) => {
+  if (config) {
+    console.log("Logger initialized with config:", config);
+  }
 };
 
 export const getConfig = () => ({
