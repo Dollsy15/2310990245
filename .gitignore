@@ -1,0 +1,32 @@
+# node modules
+node_modules/
+
+# environment files
+.env
+
+# logs
+logs
+*.log
+
+# build folders
+dist/
+build/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# dependency directories
+*/node_modules/
+
+# TypeScript
+*.tsbuildinfo
+
+# coverage
+coverage/
+
+# frontend build
+notification_app_fe/build/
+
+# backend build
+notification_app_be/dist/
